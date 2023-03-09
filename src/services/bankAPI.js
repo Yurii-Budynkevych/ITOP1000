@@ -7,6 +7,5 @@ export const getCurrentCurrencyPrice = async () => {
   const data = res.data.filter(
     element => element.currencyCodeA === 840 || element.currencyCodeA === 978
   );
-  console.log(data);
   return data;
 };

@@ -1,0 +1,7 @@
+.currency-info {
+    list-style: none;
+    display: flex;
+}
+.currency-info li+li {
+    margin-left: 50px;
+}

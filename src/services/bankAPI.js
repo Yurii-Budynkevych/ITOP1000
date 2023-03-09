@@ -7,5 +7,6 @@ export const getCurrentCurrencyPrice = async () => {
   const data = res.data.filter(
     element => element.currencyCodeA === 840 || element.currencyCodeA === 978
   );
-  return data;
+  const filteredByUAHData = data.filter(el => el.currencyCodeB === 980);
+  return filteredByUAHData;
 };

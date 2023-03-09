@@ -5,7 +5,7 @@ import { ListItem } from './Item/Item';
 
 export const CurrencyInfo = ({ arr }) => {
   return (
-    <ul>
+    <ul className="currency-info">
       {arr.map(el => (
         <ListItem key={nanoid()} toBuy={el.currencyCodeA} cost={el.rateSell} />
       ))}

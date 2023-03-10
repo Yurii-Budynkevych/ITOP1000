@@ -1,5 +1,5 @@
 .page-header {
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid gainsboro;
     display: flex;
     justify-content: space-evenly;
     align-items: center;

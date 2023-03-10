@@ -7,3 +7,6 @@
     text-align: center;
 }
 .calculator__input{display: block;}
+.calculator__input--result {
+    background-color: gainsboro;
+}

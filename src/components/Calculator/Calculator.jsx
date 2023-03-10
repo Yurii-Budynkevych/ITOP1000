@@ -63,43 +63,12 @@ export const Calculator = ({ arr }) => {
       setTo(from * usdPrice);
     }
   }, [usdPrice, eurPrice, firstCurrency, secondCurrency, from, to]);
-  // // ///////////////////////////////////////////////////////////////////////////
-  // useEffect(() => {
-  //   if (firstCurrency === 'USD' && secondCurrency === 'UAH') {
-  //     setFrom(to * usdPrice);
-  //   }
-  //   if (firstCurrency === 'USD' && secondCurrency === 'EUR') {
-  //     setFrom((to * usdPrice) / eurPrice);
-  //   }
-  //   if (firstCurrency === 'USD' && secondCurrency === 'USD') {
-  //     setFrom(to);
-  //   }
-  //   //
-  //   if (firstCurrency === 'EUR' && secondCurrency === 'UAH') {
-  //     setFrom(to * eurPrice);
-  //   }
-  //   if (firstCurrency === 'EUR' && secondCurrency === 'EUR') {
-  //     setFrom(to);
-  //   }
-  //   if (firstCurrency === 'EUR' && secondCurrency === 'USD') {
-  //     setFrom((to * eurPrice) / usdPrice);
-  //   }
-  //   //
-  //   if (firstCurrency === 'UAH' && secondCurrency === 'UAH') {
-  //     setFrom(to);
-  //   }
-  //   if (firstCurrency === 'UAH' && secondCurrency === 'EUR') {
-  //     setFrom(to * eurPrice);
-  //   }
-  //   if (firstCurrency === 'UAH' && secondCurrency === 'USD') {
-  //     setFrom(to * usdPrice);
-  //   }
-  // }, [usdPrice, eurPrice, firstCurrency, secondCurrency, to]);
 
   return (
     <div className="calculator">
       <h1 className="calculator__title">Super cool currency calculator</h1>
-      <div>
+      <label>
+        From
         <select onChange={selctChanger} name="from" defaultValue="USD">
           <option value="USD">USD</option>
           <option value="EUR">EUR</option>
@@ -114,9 +83,10 @@ export const Calculator = ({ arr }) => {
           placeholder="0"
           className="calculator__input"
         />
-      </div>
+      </label>
 
-      <div>
+      <label>
+        To
         <select onChange={secondSelctChanger} name="to" defaultValue="UAH">
           <option value="USD">USD</option>
           <option value="EUR">EUR</option>
@@ -126,12 +96,12 @@ export const Calculator = ({ arr }) => {
           value={to}
           onChange={secondInputChanger}
           type="number"
-          min="0"
+          disabled={true}
           name="cuerrencyTo"
           placeholder="0"
-          className="calculator__input"
+          className="calculator__input calculator__input--result"
         />
-      </div>
+      </label>
     </div>
   );
 };

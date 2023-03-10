@@ -27,35 +27,79 @@ export const Calculator = ({ arr }) => {
   const inputChanger = e => {
     setFrom(e.currentTarget.value);
   };
+
   const secondInputChanger = e => {
     setTo(e.currentTarget.value);
   };
 
   useEffect(() => {
-    switch (firstCurrency === 'USD') {
-      case secondCurrency === 'UAH':
-        setTo(from * usdPrice);
-        break;
-
-      case secondCurrency === 'EUR':
-        setTo(usdPrice / eurPrice);
-        break;
-
-      case secondCurrency === 'USD':
-        setTo(from);
-        break;
-
-      default:
-        setTo(0);
-        break;
+    if (firstCurrency === 'USD' && secondCurrency === 'UAH') {
+      setTo(from * usdPrice);
     }
-  }, [usdPrice, eurPrice, firstCurrency, secondCurrency, from]);
+    if (firstCurrency === 'USD' && secondCurrency === 'EUR') {
+      setTo((from * usdPrice) / eurPrice);
+    }
+    if (firstCurrency === 'USD' && secondCurrency === 'USD') {
+      setTo(from);
+    }
+    //
+    if (firstCurrency === 'EUR' && secondCurrency === 'UAH') {
+      setTo(from * eurPrice);
+    }
+    if (firstCurrency === 'EUR' && secondCurrency === 'EUR') {
+      setTo(from);
+    }
+    if (firstCurrency === 'EUR' && secondCurrency === 'USD') {
+      setTo((from * eurPrice) / usdPrice);
+    }
+    //
+    if (firstCurrency === 'UAH' && secondCurrency === 'UAH') {
+      setTo(from);
+    }
+    if (firstCurrency === 'UAH' && secondCurrency === 'EUR') {
+      setTo(from * eurPrice);
+    }
+    if (firstCurrency === 'UAH' && secondCurrency === 'USD') {
+      setTo(from * usdPrice);
+    }
+  }, [usdPrice, eurPrice, firstCurrency, secondCurrency, from, to]);
+  // // ///////////////////////////////////////////////////////////////////////////
+  // useEffect(() => {
+  //   if (firstCurrency === 'USD' && secondCurrency === 'UAH') {
+  //     setFrom(to * usdPrice);
+  //   }
+  //   if (firstCurrency === 'USD' && secondCurrency === 'EUR') {
+  //     setFrom((to * usdPrice) / eurPrice);
+  //   }
+  //   if (firstCurrency === 'USD' && secondCurrency === 'USD') {
+  //     setFrom(to);
+  //   }
+  //   //
+  //   if (firstCurrency === 'EUR' && secondCurrency === 'UAH') {
+  //     setFrom(to * eurPrice);
+  //   }
+  //   if (firstCurrency === 'EUR' && secondCurrency === 'EUR') {
+  //     setFrom(to);
+  //   }
+  //   if (firstCurrency === 'EUR' && secondCurrency === 'USD') {
+  //     setFrom((to * eurPrice) / usdPrice);
+  //   }
+  //   //
+  //   if (firstCurrency === 'UAH' && secondCurrency === 'UAH') {
+  //     setFrom(to);
+  //   }
+  //   if (firstCurrency === 'UAH' && secondCurrency === 'EUR') {
+  //     setFrom(to * eurPrice);
+  //   }
+  //   if (firstCurrency === 'UAH' && secondCurrency === 'USD') {
+  //     setFrom(to * usdPrice);
+  //   }
+  // }, [usdPrice, eurPrice, firstCurrency, secondCurrency, to]);
 
   return (
     <div className="calculator">
       <h1 className="calculator__title">Super cool currency calculator</h1>
-      <label>
-        From
+      <div>
         <select onChange={selctChanger} name="from" defaultValue="USD">
           <option value="USD">USD</option>
           <option value="EUR">EUR</option>
@@ -70,10 +114,9 @@ export const Calculator = ({ arr }) => {
           placeholder="0"
           className="calculator__input"
         />
-      </label>
+      </div>
 
-      <label>
-        To
+      <div>
         <select onChange={secondSelctChanger} name="to" defaultValue="UAH">
           <option value="USD">USD</option>
           <option value="EUR">EUR</option>
@@ -88,7 +131,7 @@ export const Calculator = ({ arr }) => {
           placeholder="0"
           className="calculator__input"
         />
-      </label>
+      </div>
     </div>
   );
 };
